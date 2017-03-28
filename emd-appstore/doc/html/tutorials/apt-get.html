@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Doing stuff apt-get does &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="Tutorials" href="index.html" />
+    <link rel="next" title="Contributing to python-apt" href="contributing.html" />
+    <link rel="prev" title="Writing your own apt-cdrom" href="apt-cdrom.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="doing-stuff-apt-get-does">
+<h1>Doing stuff <strong class="command">apt-get</strong> does<a class="headerlink" href="#doing-stuff-apt-get-does" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Julian Andres Klode &lt;<a class="reference external" href="mailto:jak&#37;&#52;&#48;debian&#46;org">jak<span>&#64;</span>debian<span>&#46;</span>org</a>&gt;</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Release:</th><td class="field-body">1.4.0~beta2</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">Jan 22, 2017</td>
+</tr>
+</tbody>
+</table>
+<p>The following article will show how you can use python-apt to do actions done
+by the <strong class="command">apt-get</strong> command.</p>
+<div class="section" id="printing-the-uris-of-all-index-files">
+<h2>Printing the URIs of all index files<a class="headerlink" href="#printing-the-uris-of-all-index-files" title="Permalink to this headline">¶</a></h2>
+<p>We all now that we can print the URIs of all our index files by running a
+simple <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">--print-uris</span> <span class="pre">update</span></code>. We can do the same. Responsible for
+the source entries is the class <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.SourceList" title="apt_pkg.SourceList"><code class="xref py py-class docutils literal"><span class="pre">apt_pkg.SourceList</span></code></a>, which can be
+combined with an <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.Acquire" title="apt_pkg.Acquire"><code class="xref py py-class docutils literal"><span class="pre">apt_pkg.Acquire</span></code></a> object using <code class="xref py py-meth docutils literal"><span class="pre">get_indexes()</span></code>.</p>
+<p>First of all, we have to create the objects:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">acquire</span> <span class="o">=</span> <span class="n">apt_pkg</span><span class="o">.</span><span class="n">Acquire</span><span class="p">()</span>
+<span class="n">slist</span> <span class="o">=</span> <span class="n">apt_pkg</span><span class="o">.</span><span class="n">SourceList</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now we have to parse /etc/apt/sources.list and its friends, by using
+<a class="reference internal" href="../library/apt_pkg.html#apt_pkg.SourceList.read_main_list" title="apt_pkg.SourceList.read_main_list"><code class="xref py py-meth docutils literal"><span class="pre">apt_pkg.SourceList.read_main_list()</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">slist</span><span class="o">.</span><span class="n">read_main_list</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <strong>slist</strong> object now knows about the location of the indexes. We now have
+to load those indexes into the <em>acquire</em> object by calling
+<a class="reference internal" href="../library/apt_pkg.html#apt_pkg.SourceList.get_indexes" title="apt_pkg.SourceList.get_indexes"><code class="xref py py-meth docutils literal"><span class="pre">apt_pkg.SourceList.get_indexes()</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">slist</span><span class="o">.</span><span class="n">get_indexes</span><span class="p">(</span><span class="n">acquire</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first argument is the acquire object into which we will load these indexes,
+and the second argument means that we want to fetch all indexes. Now the only
+thing left to do is iterating over the list of items and printing out their
+URIs. Luckily, there is <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.Acquire.items" title="apt_pkg.Acquire.items"><code class="xref py py-attr docutils literal"><span class="pre">apt_pkg.Acquire.items</span></code></a> which allows us to
+iterate over the items:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">acquire</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">desc_uri</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the end a program could look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+<span class="sd">&quot;&quot;&quot;Print out the URIs of all indexes files.</span>
+
+<span class="sd">This behaves somewhat like apt-get --print-uris update.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">apt_pkg</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">apt_pkg</span><span class="o">.</span><span class="n">init_config</span><span class="p">()</span>
+    <span class="n">apt_pkg</span><span class="o">.</span><span class="n">init_system</span><span class="p">()</span>
+    <span class="n">acquire</span> <span class="o">=</span> <span class="n">apt_pkg</span><span class="o">.</span><span class="n">Acquire</span><span class="p">()</span>
+    <span class="n">slist</span> <span class="o">=</span> <span class="n">apt_pkg</span><span class="o">.</span><span class="n">SourceList</span><span class="p">()</span>
+    <span class="c1"># Read the list</span>
+    <span class="n">slist</span><span class="o">.</span><span class="n">read_main_list</span><span class="p">()</span>
+    <span class="c1"># Add all indexes to the fetcher.</span>
+    <span class="n">slist</span><span class="o">.</span><span class="n">get_indexes</span><span class="p">(</span><span class="n">acquire</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Now print the URI of every item.</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">acquire</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">desc_uri</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Doing stuff <strong class="command">apt-get</strong> does</a><ul>
+<li><a class="reference internal" href="#printing-the-uris-of-all-index-files">Printing the URIs of all index files</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">Tutorials</a><ul>
+      <li>Previous: <a href="apt-cdrom.html" title="previous chapter">Writing your own apt-cdrom</a></li>
+      <li>Next: <a href="contributing.html" title="next chapter">Contributing to python-apt</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorials/apt-get.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/tutorials/apt-get.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

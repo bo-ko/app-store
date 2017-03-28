@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>aptsources.distro — Distribution abstraction of the sources.list &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="Python APT Library" href="index.html" />
+    <link rel="next" title="aptsources.sourceslist — Provide an abstraction of the sources.list" href="aptsources.sourceslist.html" />
+    <link rel="prev" title="aptsources.distinfo — provide meta information for distro repositories" href="aptsources.distinfo.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="aptsources-distro-distribution-abstraction-of-the-sources-list">
+<h1><a class="reference internal" href="#module-aptsources.distro" title="aptsources.distro"><code class="xref py py-mod docutils literal"><span class="pre">aptsources.distro</span></code></a> &#8212; Distribution abstraction of the sources.list<a class="headerlink" href="#aptsources-distro-distribution-abstraction-of-the-sources-list" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This part of the documentation is created automatically.</p>
+</div>
+<span class="target" id="module-aptsources.distro"></span><dl class="class">
+<dt id="aptsources.distro.DebianDistribution">
+<em class="property">class </em><code class="descclassname">aptsources.distro.</code><code class="descname">DebianDistribution</code><span class="sig-paren">(</span><em>id</em>, <em>codename</em>, <em>description</em>, <em>release</em>, <em>is_like=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.DebianDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to support specific Debian features</p>
+<dl class="method">
+<dt id="aptsources.distro.DebianDistribution.get_mirrors">
+<code class="descname">get_mirrors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.DebianDistribution.get_mirrors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.DebianDistribution.is_codename">
+<code class="descname">is_codename</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.DebianDistribution.is_codename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare a given name with the release codename and check if
+if it can be used as a synonym for a development releases</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aptsources.distro.Distribution">
+<em class="property">class </em><code class="descclassname">aptsources.distro.</code><code class="descname">Distribution</code><span class="sig-paren">(</span><em>id</em>, <em>codename</em>, <em>description</em>, <em>release</em>, <em>is_like=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="aptsources.distro.Distribution.add_source">
+<code class="descname">add_source</code><span class="sig-paren">(</span><em>type=None</em>, <em>uri=None</em>, <em>dist=None</em>, <em>comps=None</em>, <em>comment=''</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.add_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add distribution specific sources</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.Distribution.change_server">
+<code class="descname">change_server</code><span class="sig-paren">(</span><em>uri</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.change_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the server of all distro specific sources to
+a given host</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.Distribution.disable_component">
+<code class="descname">disable_component</code><span class="sig-paren">(</span><em>comp</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.disable_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable a component in all main, child and source code sources
+(excluding cdrom based sources)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.Distribution.enable_component">
+<code class="descname">enable_component</code><span class="sig-paren">(</span><em>comp</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.enable_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable a component in all main, child and source code sources
+(excluding cdrom based sources)</p>
+<p>comp:         the component that should be enabled</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.Distribution.get_mirrors">
+<code class="descname">get_mirrors</code><span class="sig-paren">(</span><em>mirror_template=None</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.get_mirrors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide a set of mirrors where you can get the distribution from</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.Distribution.get_server_list">
+<code class="descname">get_server_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.get_server_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of used and suggested servers</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.Distribution.get_sources">
+<code class="descname">get_sources</code><span class="sig-paren">(</span><em>sourceslist</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.get_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the corresponding template, main and child sources
+for the distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.distro.Distribution.is_codename">
+<code class="descname">is_codename</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.Distribution.is_codename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare a given name with the release codename.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="aptsources.distro.NoDistroTemplateException">
+<em class="property">exception </em><code class="descclassname">aptsources.distro.</code><code class="descname">NoDistroTemplateException</code><a class="headerlink" href="#aptsources.distro.NoDistroTemplateException" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="aptsources.distro.UbuntuDistribution">
+<em class="property">class </em><code class="descclassname">aptsources.distro.</code><code class="descname">UbuntuDistribution</code><span class="sig-paren">(</span><em>id</em>, <em>codename</em>, <em>description</em>, <em>release</em>, <em>is_like=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.UbuntuDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to support specific Ubuntu features</p>
+<dl class="method">
+<dt id="aptsources.distro.UbuntuDistribution.get_mirrors">
+<code class="descname">get_mirrors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.UbuntuDistribution.get_mirrors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aptsources.distro.UbuntuRTMDistribution">
+<em class="property">class </em><code class="descclassname">aptsources.distro.</code><code class="descname">UbuntuRTMDistribution</code><span class="sig-paren">(</span><em>id</em>, <em>codename</em>, <em>description</em>, <em>release</em>, <em>is_like=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.UbuntuRTMDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to support specific Ubuntu RTM features</p>
+<dl class="method">
+<dt id="aptsources.distro.UbuntuRTMDistribution.get_mirrors">
+<code class="descname">get_mirrors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.UbuntuRTMDistribution.get_mirrors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="aptsources.distro.get_distro">
+<code class="descclassname">aptsources.distro.</code><code class="descname">get_distro</code><span class="sig-paren">(</span><em>id=None</em>, <em>codename=None</em>, <em>description=None</em>, <em>release=None</em>, <em>is_like=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.distro.get_distro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the currently used distribution and return the corresponding
+distriubtion class that supports distro specific features.</p>
+<p>If no paramter are given the distro will be auto detected via
+a call to lsb-release</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python APT Library</a><ul>
+      <li>Previous: <a href="aptsources.distinfo.html" title="previous chapter"><code class="docutils literal"><span class="pre">aptsources.distinfo</span></code> &#8212; provide meta information for distro repositories</a></li>
+      <li>Next: <a href="aptsources.sourceslist.html" title="next chapter"><code class="docutils literal"><span class="pre">aptsources.sourceslist</span></code> &#8212; Provide an abstraction of the sources.list</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/library/aptsources.distro.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/library/aptsources.distro.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

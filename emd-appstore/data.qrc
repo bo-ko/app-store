@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/qss/qss.qss</file>
+        <file>data/images/open96p.png</file>
+        <file>data/images/open64px.png</file>
+        <file>data/images/open48px.png</file>
+        <file>data/images/icon_search_press.png</file>
+        <file>data/images/icon_search_normal.png</file>
+        <file>data/images/icon_search_hover.png</file>
+    </qresource>
+</RCC>

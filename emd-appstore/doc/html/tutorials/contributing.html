@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Contributing to python-apt &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="Tutorials" href="index.html" />
+    <link rel="next" title="Python APT and C++" href="../c++/index.html" />
+    <link rel="prev" title="Doing stuff apt-get does" href="apt-get.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="contributing-to-python-apt">
+<h1>Contributing to python-apt<a class="headerlink" href="#contributing-to-python-apt" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Julian Andres Klode &lt;<a class="reference external" href="mailto:jak&#37;&#52;&#48;debian&#46;org">jak<span>&#64;</span>debian<span>&#46;</span>org</a>&gt;</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Release:</th><td class="field-body">1.4.0~beta2</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">Jan 22, 2017</td>
+</tr>
+</tbody>
+</table>
+<p>Let&#8217;s say you need a new feature, you can develop it, and you want to get it
+included in python-apt. Then be sure to follow the following guidelines.</p>
+<div class="section" id="available-branches">
+<h2>Available branches<a class="headerlink" href="#available-branches" title="Permalink to this headline">¶</a></h2>
+<p>First of all, let&#8217;s talk a bit about the git branches of python-apt. In the
+following parts, we will assume that you use git to create your changes and
+submit them.</p>
+<div class="section" id="repositories">
+<h3>Repositories<a class="headerlink" href="#repositories" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://anonscm.debian.org/cgit/apt/python-apt.git">https://anonscm.debian.org/cgit/apt/python-apt.git</a></p>
+<blockquote>
+<div><p>This is the official Debian repository of python-apt.
+You can clone it using git by doing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">anonscm</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">apt</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>All code which will be uploaded to Debian is here.
+There are also branches for Ubuntu releases, but those may not be up-to-date.</p>
+<p>Branch names consist of the distribution vendor, followed by a slash,
+followed by the release of that distribution, for example: <code class="docutils literal"><span class="pre">debian/sid</span></code>.</p>
+<p>The current working branch is usually pointed to by <code class="docutils literal"><span class="pre">HEAD</span></code>, it is
+either <code class="docutils literal"><span class="pre">debian/sid</span></code> or <code class="docutils literal"><span class="pre">debian/experimental</span></code>.</p>
+<p>If both sid and experimental are active, bug fixes are either cherry-picked from
+<code class="docutils literal"><span class="pre">debian/experimental</span></code> to <code class="docutils literal"><span class="pre">debian/sid</span></code>, or a new release is cut on the sid branch
+and then merged into experimental.</p>
+<p>Updates to stable release branches, such as <code class="docutils literal"><span class="pre">debian/wheezy</span></code>, are almost always
+cherry-picked or backported from the <code class="docutils literal"><span class="pre">debian/sid</span></code> branch.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="c-coding-style">
+<h2>C++ Coding style<a class="headerlink" href="#c-coding-style" title="Permalink to this headline">¶</a></h2>
+<p>This document gives coding conventions for the C++ code comprising
+the C++ extensions of Python APT.  Please see the companion
+informational PEP describing style guidelines for Python code (<span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a>).</p>
+<p>Note, rules are there to be broken.  Two good reasons to break a
+particular rule:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>When applying the rule would make the code less readable, even
+for someone who is used to reading code that follows the rules.</li>
+<li>To be consistent with surrounding code that also breaks it
+(maybe for historic reasons) &#8211; although this is also an
+opportunity to clean up someone else&#8217;s mess (in true XP style).</li>
+</ol>
+</div></blockquote>
+<p>This part of the document is derived from <span class="target" id="index-1"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0007"><strong>PEP 7</strong></a> which was written by
+Guido van Rossum.</p>
+<div class="section" id="c-dialect">
+<h3>C++ dialect<a class="headerlink" href="#c-dialect" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Use ISO standard C++ (the 2011 version of the standard), headers
+should also adhere to the 1998 version of the standard.</li>
+<li>Use C++ style // one-line comments for single-line comments.</li>
+<li>No compiler warnings with <code class="docutils literal"><span class="pre">gcc</span> <span class="pre">-std=c++11</span> <span class="pre">-Wall</span> <span class="pre">-Wno-write-strings</span></code>. There
+should also be no errors with <code class="docutils literal"><span class="pre">-pedantic</span></code> added.</li>
+</ul>
+</div>
+<div class="section" id="code-lay-out">
+<h3>Code lay-out<a class="headerlink" href="#code-lay-out" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Use 3-space indents, in files that already use them. In new source files,
+that were created after this rule was introduced, use 4-space indents.</p>
+<p>At some point, the whole codebase may be converted to use only
+4-space indents.</p>
+</li>
+<li><p class="first">No line should be longer than 79 characters.  If this and the
+previous rule together don&#8217;t give you enough room to code, your
+code is too complicated &#8211; consider using subroutines.</p>
+</li>
+<li><p class="first">No line should end in whitespace.  If you think you need
+significant trailing whitespace, think again &#8211; somebody&#8217;s
+editor might delete it as a matter of routine.</p>
+</li>
+<li><p class="first">Function definition style: function name in column 2, outermost
+curly braces in column 1, blank line after local variable
+declarations:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">extra_ivars</span><span class="p">(</span><span class="n">PyTypeObject</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="n">PyTypeObject</span> <span class="o">*</span><span class="n">base</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">t_size</span> <span class="o">=</span> <span class="n">PyType_BASICSIZE</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">b_size</span> <span class="o">=</span> <span class="n">PyType_BASICSIZE</span><span class="p">(</span><span class="n">base</span><span class="p">);</span>
+
+    <span class="n">assert</span><span class="p">(</span><span class="n">t_size</span> <span class="o">&gt;=</span> <span class="n">b_size</span><span class="p">);</span> <span class="cm">/* type smaller than base! */</span>
+    <span class="p">...</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Code structure: one space between keywords like &#8216;if&#8217;, &#8216;for&#8217; and
+the following left paren; no spaces inside the paren; braces as
+shown:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">mro</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">The return statement should <em>not</em> get redundant parentheses:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">Py_None</span><span class="p">;</span> <span class="cm">/* correct */</span>
+<span class="k">return</span><span class="p">(</span><span class="n">Py_None</span><span class="p">);</span> <span class="cm">/* incorrect */</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Function and macro call style: <code class="docutils literal"><span class="pre">foo(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code> &#8211; no space before
+the open paren, no spaces inside the parens, no spaces before
+commas, one space after each comma.</p>
+</li>
+<li><p class="first">Always put spaces around assignment, Boolean and comparison
+operators.  In expressions using a lot of operators, add spaces
+around the outermost (lowest-priority) operators.</p>
+</li>
+<li><p class="first">Breaking long lines: if you can, break after commas in the
+outermost argument list.  Always indent continuation lines
+appropriately, e.g.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">PyErr_Format</span><span class="p">(</span><span class="n">PyExc_TypeError</span><span class="p">,</span>
+        <span class="s">&quot;cannot create &#39;%.100s&#39; instances&quot;</span><span class="p">,</span>
+        <span class="n">type</span><span class="o">-&gt;</span><span class="n">tp_name</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When you break a long expression at a binary operator, the
+operator goes at the end of the previous line, e.g.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">tp_dictoffset</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">base</span><span class="o">-&gt;</span><span class="n">tp_dictoffset</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+    <span class="n">type</span><span class="o">-&gt;</span><span class="n">tp_dictoffset</span> <span class="o">==</span> <span class="n">b_size</span> <span class="o">&amp;&amp;</span>
+    <span class="p">(</span><span class="kt">size_t</span><span class="p">)</span><span class="n">t_size</span> <span class="o">==</span> <span class="n">b_size</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">PyObject</span> <span class="o">*</span><span class="p">))</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="cm">/* &quot;Forgive&quot; adding a __dict__ only */</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Put blank lines around functions, structure definitions, and
+major sections inside functions.</p>
+</li>
+<li><p class="first">Comments go before the code they describe.</p>
+</li>
+<li><p class="first">All functions and global variables should be declared static
+unless they are to be part of a published interface</p>
+</li>
+</ul>
+</div>
+<div class="section" id="naming-conventions">
+<h3>Naming conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Use a <code class="docutils literal"><span class="pre">Py</span></code> prefix for public functions; never for static
+functions.  The <code class="docutils literal"><span class="pre">Py_</span></code> prefix is reserved for global service
+routines like <code class="docutils literal"><span class="pre">Py_FatalError</span></code>; specific groups of routines
+(e.g. specific object type APIs) use a longer prefix,
+e.g. <code class="docutils literal"><span class="pre">PyString_</span></code> for string functions.</li>
+<li>Public functions and variables use MixedCase with underscores,
+like this: <code class="docutils literal"><span class="pre">PyObject_GetAttr</span></code>, <code class="docutils literal"><span class="pre">Py_BuildValue</span></code>, <code class="docutils literal"><span class="pre">PyExc_TypeError</span></code>.</li>
+<li>Internal functions and variables use lowercase with underscores, like
+this: <code class="docutils literal"><span class="pre">hashes_get_sha1.</span></code></li>
+<li>Occasionally an &#8220;internal&#8221; function has to be visible to the
+loader; we use the _Py prefix for this, e.g.: <code class="docutils literal"><span class="pre">_PyObject_Dump</span></code>.</li>
+<li>Macros should have a MixedCase prefix and then use upper case,
+for example: <code class="docutils literal"><span class="pre">PyString_AS_STRING</span></code>, <code class="docutils literal"><span class="pre">Py_PRINT_RAW</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="documentation-strings">
+<h3>Documentation Strings<a class="headerlink" href="#documentation-strings" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">The first line of each function docstring should be a &#8220;signature
+line&#8221; that gives a brief synopsis of the arguments and return
+value.  For example:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">PyDoc_STRVAR</span><span class="p">(</span><span class="n">myfunction__doc__</span><span class="p">,</span>
+<span class="s">&quot;myfunction(name: str, value) -&gt; bool</span><span class="se">\n\n</span><span class="s">&quot;</span>
+<span class="s">&quot;Determine whether name and value make a valid pair.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The signature line should be formatted using the format for function
+annotations described in <span class="target" id="index-2"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-3107"><strong>PEP 3107</strong></a>, whereas the annotations shall reflect
+the name of the type (e.g. <code class="docutils literal"><span class="pre">str</span></code>). The leading <code class="docutils literal"><span class="pre">def</span></code> and the trailing
+<code class="docutils literal"><span class="pre">:</span></code> as used for function definitions must not be included.</p>
+<p>Always include a blank line between the signature line and the
+text of the description.</p>
+<p>If the return value for the function is always <code class="docutils literal"><span class="pre">None</span></code> (because
+there is no meaningful return value), do not include the
+indication of the return type.</p>
+</li>
+<li><p class="first">When writing multi-line docstrings, be sure to always use
+string literal concatenation:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">PyDoc_STRVAR</span><span class="p">(</span><span class="n">myfunction__doc__</span><span class="p">,</span>
+<span class="s">&quot;myfunction(name, value) -&gt; bool</span><span class="se">\n\n</span><span class="s">&quot;</span>
+<span class="s">&quot;Determine whether name and value make a valid pair.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="python-coding-style">
+<h2>Python Coding Style<a class="headerlink" href="#python-coding-style" title="Permalink to this headline">¶</a></h2>
+<p>The coding style for all code written in python is <span class="target" id="index-3"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a>. Exceptions from
+this rule are the documentation, where code is sometimes formatted differently
+to explain aspects.</p>
+<p>When writing code, use tools like pylint, pyflakes, pychecker and pep8.py
+(all available from Debian/Ubuntu) to verify that your code is
+OK. Fix all the problems which seem reasonable, and mention the unfixed issues
+when asking for merge.</p>
+<p>All code must work on both Python 2 and Python 3.</p>
+</div>
+<div class="section" id="submitting-your-patch">
+<h2>Submitting your patch<a class="headerlink" href="#submitting-your-patch" title="Permalink to this headline">¶</a></h2>
+<p>First of all, the patch you create should be based against the most current
+branch of python-apt (debian/sid or debian/experimental). If it is a bugfix,
+you should probably use debian/sid. If you choose the wrong branch, we will
+ask you to rebase your patches against the correct one.</p>
+<p>Once you have made your change, check that it:</p>
+<blockquote>
+<div><ul class="simple">
+<li>conforms to <span class="target" id="index-4"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a> (checked with pep8.py). It should, at least not
+introduce new errors. (and never have whitespace at end of line)</li>
+<li>produces no new errors in pychecker, pyflakes and pylint (unless you
+can&#8217;t fix them, but please tell so when requesting the merge, so it can
+be fixed before hitting one of the main branches).</li>
+<li>does not change the behaviour of existing code in a non-compatible way.</li>
+<li>works on both Python 2 and Python 3.</li>
+</ul>
+</div></blockquote>
+<p>If your change follows all points of the checklist, you can commit it to your
+repository. (You could commit it first, and check later, and then commit the
+fixes, but commits should be logical and it makes no sense to have to commits
+for one logical unit).</p>
+<p>The changelog message should follow standard git format. At the end of the
+message, tags understood by gbp-dch and other tags may be added. An example
+commit message could be:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span>apt.package: Fix blah blah
+
+Fix a small bug where foo is doing bar, but should be doing baz
+instead.
+
+Closes: #bugnumber
+LP: #ubuntu-bug-number
+Reported-By: Bug Reporter Name &lt;email@example.com&gt;
+</pre></div>
+</div>
+<p>Once you have made all your changes,  you can run <code class="docutils literal"><span class="pre">git</span> <span class="pre">format-patch</span></code>,
+specifying the upstream commit or branch you want to create patches
+against. Then you can either:</p>
+<ul class="simple">
+<li>report a bug against the python-apt package, attach the patches
+you created in the previous step, and tag it with &#8216;patch&#8217;. It might also be
+a good idea to prefix the bug report with &#8216;[PATCH]&#8217;.</li>
+<li>send the patches via <code class="docutils literal"><span class="pre">git</span> <span class="pre">send-email</span></code>.</li>
+</ul>
+<p>For larger patch series, you can also publish a git branch on a
+public repository and request it to be pulled.</p>
+<p>If you choose that approach, you may want to base your patches against
+the latest release, and not against some random commit, for the sake of
+preserving a sane git history.</p>
+<p>Be prepared to rebase such a branch, and close any bugs you fix in the
+branch by mentioning them in the commit message using a Closes or LP
+tag.</p>
+</div>
+<div class="section" id="documentation-updates">
+<h2>Documentation updates<a class="headerlink" href="#documentation-updates" title="Permalink to this headline">¶</a></h2>
+<p>If you want to update the documentation, please follow the procedure as written
+above. You can send your content in plain text, but reStructuredText is the
+preferred format. I (Julian Andres Klode) will review your patch and include
+it.</p>
+</div>
+<div class="section" id="example-patch-session">
+<h2>Example patch session<a class="headerlink" href="#example-patch-session" title="Permalink to this headline">¶</a></h2>
+<p>In the following example, we edit a file, create a patch (an enhanced
+patch), and report a wishlist bug with this patch against the python-apt
+package:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>user@ pc:~$ git clone git://anonscm.debian.org/apt/python-apt.git
+user@pc:~$ <span class="nb">cd</span> python-apt
+user@pc:~/python-apt$ editor FILES
+user@pc:~/python-apt$ pep8 FILES <span class="c1"># PEP 8 check, see above.</span>
+user@pc:~/python-apt$ pylint -e FILES <span class="c1"># Check with pylint</span>
+user@pc:~/python-apt$ pyflakes FILES  <span class="c1"># Check with pyflakes</span>
+user@pc:~/python-apt$ pychecker FILES <span class="c1"># Check with pychecker</span>
+user@pc:~/python-apt$ git commit -p
+user@pc:~/python-apt$ git format-patch origin/HEAD
+user@pc:~/python-apt$ reportbug --severity<span class="o">=</span>wishlist --tag<span class="o">=</span>patch --attach<span class="o">=</span>&lt;patch&gt; ... python-apt
+</pre></div>
+</div>
+<p>You may also send the patches to the mailing list instead of
+reporting the bug:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>user@pc:~/python-apt$ git send-email --to<span class="o">=</span>deity@lists.debian.org &lt;patches created by format-patch&gt;
+</pre></div>
+</div>
+<p>You can even push your changes to your own repository and request
+a pull request.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Contributing to python-apt</a><ul>
+<li><a class="reference internal" href="#available-branches">Available branches</a><ul>
+<li><a class="reference internal" href="#repositories">Repositories</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#c-coding-style">C++ Coding style</a><ul>
+<li><a class="reference internal" href="#c-dialect">C++ dialect</a></li>
+<li><a class="reference internal" href="#code-lay-out">Code lay-out</a></li>
+<li><a class="reference internal" href="#naming-conventions">Naming conventions</a></li>
+<li><a class="reference internal" href="#documentation-strings">Documentation Strings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python-coding-style">Python Coding Style</a></li>
+<li><a class="reference internal" href="#submitting-your-patch">Submitting your patch</a></li>
+<li><a class="reference internal" href="#documentation-updates">Documentation updates</a></li>
+<li><a class="reference internal" href="#example-patch-session">Example patch session</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">Tutorials</a><ul>
+      <li>Previous: <a href="apt-get.html" title="previous chapter">Doing stuff <strong class="command">apt-get</strong> does</a></li>
+      <li>Next: <a href="../c++/index.html" title="next chapter">Python APT and C++</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorials/contributing.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/tutorials/contributing.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

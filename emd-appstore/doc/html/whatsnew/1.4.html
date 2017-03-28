@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What’s New In python-apt 1.4 &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="What’s new in python-apt" href="index.html" />
+    <link rel="next" title="Python APT Library" href="../library/index.html" />
+    <link rel="prev" title="What’s New In python-apt 1.1" href="1.1.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-s-new-in-python-apt-1-4">
+<h1>What&#8217;s New In python-apt 1.4<a class="headerlink" href="#what-s-new-in-python-apt-1-4" title="Permalink to this headline">¶</a></h1>
+<p>This release is built against APT 1.4, see <a class="reference internal" href="1.1.html"><span class="doc">What&#8217;s New In python-apt 1.1</span></a> for the other changes
+since 1.0, the last series with a feature-complete release. There are no 1.2
+or 1.3 series.</p>
+<div class="section" id="added">
+<h2>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">The methods <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.parse_depends" title="apt_pkg.parse_depends"><code class="xref py py-meth docutils literal"><span class="pre">apt_pkg.parse_depends()</span></code></a> and <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.parse_src_depends" title="apt_pkg.parse_src_depends"><code class="xref py py-meth docutils literal"><span class="pre">apt_pkg.parse_src_depends()</span></code></a>
+gained a new parameter <em>architecture</em> to change the architecture the dependency lines
+are interpreted for, matching the change in apt 1.4~beta3.</p>
+<p>This only really makes sense for the latter option right now, as it only
+affects the parsing of architecture lists.</p>
+<p>By default, the host architecture is used.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What&#8217;s New In python-apt 1.4</a><ul>
+<li><a class="reference internal" href="#added">Added</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">What&#8217;s new in python-apt</a><ul>
+      <li>Previous: <a href="1.1.html" title="previous chapter">What&#8217;s New In python-apt 1.1</a></li>
+      <li>Next: <a href="../library/index.html" title="next chapter">Python APT Library</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/whatsnew/1.4.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/whatsnew/1.4.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

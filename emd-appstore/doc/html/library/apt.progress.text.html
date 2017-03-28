@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>apt.progress.text — Progress reporting for text interfaces &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="Python APT Library" href="index.html" />
+    <link rel="next" title="aptsources.distinfo — provide meta information for distro repositories" href="aptsources.distinfo.html" />
+    <link rel="prev" title="apt.progress.base — Abstract classes for progress reporting" href="apt.progress.base.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-apt.progress.text">
+<span id="apt-progress-text-progress-reporting-for-text-interfaces"></span><h1><a class="reference internal" href="#module-apt.progress.text" title="apt.progress.text"><code class="xref py py-mod docutils literal"><span class="pre">apt.progress.text</span></code></a> &#8212; Progress reporting for text interfaces<a class="headerlink" href="#module-apt.progress.text" title="Permalink to this headline">¶</a></h1>
+<p>Progress reporting for text interfaces.</p>
+<div class="section" id="acquire-progress-reporting">
+<h2>Acquire Progress Reporting<a class="headerlink" href="#acquire-progress-reporting" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.progress.text.AcquireProgress">
+<em class="property">class </em><code class="descclassname">apt.progress.text.</code><code class="descname">AcquireProgress</code><span class="sig-paren">(</span><em>outfile=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress" title="Permalink to this definition">¶</a></dt>
+<dd><p>AcquireProgress for the text interface.</p>
+<dl class="method">
+<dt id="apt.progress.text.AcquireProgress.fail">
+<code class="descname">fail</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress.fail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when an item is failed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.AcquireProgress.fetch">
+<code class="descname">fetch</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress.fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when some of the item&#8217;s data is fetched.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.AcquireProgress.ims_hit">
+<code class="descname">ims_hit</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress.ims_hit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when an item is update (e.g. not modified on the server).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.AcquireProgress.media_change">
+<code class="descname">media_change</code><span class="sig-paren">(</span><em>medium</em>, <em>drive</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress.media_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompt the user to change the inserted removable media.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.AcquireProgress.pulse">
+<code class="descname">pulse</code><span class="sig-paren">(</span><em>owner</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress.pulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Periodically invoked while the Acquire process is underway.</p>
+<p>Return False if the user asked to cancel the whole Acquire process.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.AcquireProgress.start">
+<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start an Acquire progress.</p>
+<p>In this case, the function sets up a signal handler for SIGWINCH, i.e.
+window resize signals. And it also sets id to 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.AcquireProgress.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.AcquireProgress.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when the Acquire process stops running.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="cd-rom-progress-reporting">
+<h2>CD-ROM Progress Reporting<a class="headerlink" href="#cd-rom-progress-reporting" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.progress.text.CdromProgress">
+<em class="property">class </em><code class="descclassname">apt.progress.text.</code><code class="descname">CdromProgress</code><span class="sig-paren">(</span><em>outfile=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.CdromProgress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text CD-ROM progress.</p>
+<dl class="method">
+<dt id="apt.progress.text.CdromProgress.ask_cdrom_name">
+<code class="descname">ask_cdrom_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.CdromProgress.ask_cdrom_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask the user to provide a name for the disc.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.CdromProgress.change_cdrom">
+<code class="descname">change_cdrom</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.CdromProgress.change_cdrom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask the user to change the CD-ROM.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.CdromProgress.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>text</em>, <em>current</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.CdromProgress.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the current progress.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="operation-progress-reporting">
+<h2>Operation Progress Reporting<a class="headerlink" href="#operation-progress-reporting" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.progress.text.OpProgress">
+<em class="property">class </em><code class="descclassname">apt.progress.text.</code><code class="descname">OpProgress</code><span class="sig-paren">(</span><em>outfile=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.OpProgress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operation progress reporting.</p>
+<p>This closely resembles OpTextProgress in libapt-pkg.</p>
+<dl class="method">
+<dt id="apt.progress.text.OpProgress.done">
+<code class="descname">done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.OpProgress.done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called once an operation has been completed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.progress.text.OpProgress.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>percent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.progress.text.OpProgress.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called periodically to update the user interface.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">apt.progress.text</span></code> &#8212; Progress reporting for text interfaces</a><ul>
+<li><a class="reference internal" href="#acquire-progress-reporting">Acquire Progress Reporting</a></li>
+<li><a class="reference internal" href="#cd-rom-progress-reporting">CD-ROM Progress Reporting</a></li>
+<li><a class="reference internal" href="#operation-progress-reporting">Operation Progress Reporting</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python APT Library</a><ul>
+      <li>Previous: <a href="apt.progress.base.html" title="previous chapter"><code class="docutils literal"><span class="pre">apt.progress.base</span></code> &#8212; Abstract classes for progress reporting</a></li>
+      <li>Next: <a href="aptsources.distinfo.html" title="next chapter"><code class="docutils literal"><span class="pre">aptsources.distinfo</span></code> &#8212; provide meta information for distro repositories</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/library/apt.progress.text.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/library/apt.progress.text.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

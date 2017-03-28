@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What’s new in python-apt &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="next" title="What’s New In python-apt 0.7.100" href="0.7.100.html" />
+    <link rel="prev" title="Python APT Documentation contents" href="../contents.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-s-new-in-python-apt">
+<h1>What&#8217;s new in python-apt<a class="headerlink" href="#what-s-new-in-python-apt" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="0.7.100.html">What&#8217;s New In python-apt 0.7.100</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#support-for-python-3">Support for Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#real-classes-in-apt-pkg">Real classes in <code class="docutils literal"><span class="pre">apt_pkg</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#complete-rename-of-functions-methods-and-attributes">Complete rename of functions, methods and attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#context-managers-for-the-with-statement">Context managers for the <code class="docutils literal"><span class="pre">with</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#unification-of-dependency-handling">Unification of dependency handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#c-headers">C++ headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#redesign-of-apt-inst">Redesign of <code class="docutils literal"><span class="pre">apt_inst</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#other-changes">Other changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.7.100.html#porting-your-applications-to-the-new-python-apt-api">Porting your applications to the new python-apt API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="0.8.0.html">What&#8217;s New In python-apt 0.8</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="0.8.0.html#removal-of-old-api">Removal of old API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.8.0.html#multi-arch-support">Multi-arch support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.8.0.html#features-for-mancoosi">Features for mancoosi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.8.0.html#other-changes">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="0.9.4.html">What&#8217;s New In python-apt 0.9.4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="0.9.4.html#new-features">New features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.9.4.html#maintenance">Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1.0.html">What&#8217;s New In python-apt 1.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html#new-features">New features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html#backward-incompatible-changes">Backward-incompatible changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html#deprecated">Deprecated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html#removed">Removed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html#maintenance">Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1.1.html">What&#8217;s New In python-apt 1.1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.1.html#highlights">Highlights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.html#removed">Removed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.html#added">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.html#deprecated">Deprecated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1.4.html">What&#8217;s New In python-apt 1.4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.4.html#added">Added</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../contents.html" title="previous chapter">Python APT Documentation contents</a></li>
+      <li>Next: <a href="0.7.100.html" title="next chapter">What&#8217;s New In python-apt 0.7.100</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/whatsnew/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/whatsnew/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

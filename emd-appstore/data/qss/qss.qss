@@ -1,0 +1,30 @@
+/* remove all  QWidget's focus border */
+QWidget:focus {
+    outline: none;
+}
+
+/* 去焦点 */
+QPushButton:focus {
+    padding: -1; /* 具体负多少可以调节 */
+}
+
+QWidget#CtrlWidget {
+    background-color:#1B55A0;
+}
+
+QWidget#ToolBarWidget {
+    background-color:#55B0FF;
+}
+
+QPushButton#SearchBt {
+    border-image:url(:/data/images/icon_search_normal);
+    background:transparent;
+}
+
+QPushButton#SearchBt:hover {
+    border-image:url(:/data/images/icon_search_hover)
+}
+
+QPushButton#SearchBt:pressed {
+    border-image:url(:/data/images/icon_search_press)
+}

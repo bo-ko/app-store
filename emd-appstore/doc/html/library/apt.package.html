@@ -1,0 +1,895 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>apt.package — Classes for package handling &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="Python APT Library" href="index.html" />
+    <link rel="next" title="apt.progress.base — Abstract classes for progress reporting" href="apt.progress.base.html" />
+    <link rel="prev" title="apt.debfile — Classes related to debian package files" href="apt.debfile.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-apt.package">
+<span id="apt-package-classes-for-package-handling"></span><h1><a class="reference internal" href="#module-apt.package" title="apt.package"><code class="xref py py-mod docutils literal"><span class="pre">apt.package</span></code></a> &#8212; Classes for package handling<a class="headerlink" href="#module-apt.package" title="Permalink to this headline">¶</a></h1>
+<p>Functionality related to packages.</p>
+<div class="section" id="the-package-class">
+<h2>The Package class<a class="headerlink" href="#the-package-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.package.Package">
+<em class="property">class </em><code class="descclassname">apt.package.</code><code class="descname">Package</code><span class="sig-paren">(</span><em>pcache</em>, <em>pkgiter</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of a package in a cache.</p>
+<p>This class provides methods and properties for working with a package. It
+lets you mark the package for installation, check if it is installed, and
+much more.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Several methods have been deprecated in version 0.7.9 of python-apt,
+please see the <a class="reference internal" href="#apt.package.Version" title="apt.package.Version"><code class="xref py py-class docutils literal"><span class="pre">Version</span></code></a> class for the new alternatives.</p>
+</div>
+<dl class="method">
+<dt id="apt.package.Package.architecture">
+<code class="descname">architecture</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.architecture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Architecture of the package.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.7.100.3: </span>This is now the package&#8217;s architecture in the multi-arch sense,
+previously it was the architecture of the candidate version
+and deprecated.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.candidate">
+<code class="descname">candidate</code><a class="headerlink" href="#apt.package.Package.candidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the candidate version of the package.</p>
+<p>This property is writeable to allow you to set the candidate version
+of the package. Just assign a Version() object, and it will be set as
+the candidate version.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Package.commit">
+<code class="descname">commit</code><span class="sig-paren">(</span><em>fprogress</em>, <em>iprogress</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Commit the changes.</p>
+<p>The parameter <em>fprogress</em> refers to a apt_pkg.AcquireProgress() object,
+like apt.progress.text.AcquireProgress().</p>
+<p>The parameter <em>iprogress</em> refers to an InstallProgress() object, as
+found in apt.progress.base.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.essential">
+<code class="descname">essential</code><a class="headerlink" href="#apt.package.Package.essential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the package is an essential part of the system.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.fullname">
+<code class="descname">fullname</code><a class="headerlink" href="#apt.package.Package.fullname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the package, including architecture.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.100.3.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Package.get_changelog">
+<code class="descname">get_changelog</code><span class="sig-paren">(</span><em>uri=None</em>, <em>cancel_lock=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.get_changelog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the changelog of the package and return it as unicode
+string.</p>
+<p>The parameter <em>uri</em> refers to the uri of the changelog file. It may
+contain multiple named variables which will be substitued. These
+variables are (src_section, prefix, src_pkg, src_ver). An example is
+the Ubuntu changelog:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;http://changelogs.ubuntu.com/changelogs/pool&quot;</span> \
+    <span class="s2">&quot;/</span><span class="si">%(src_section)s</span><span class="s2">/</span><span class="si">%(prefix)s</span><span class="s2">/</span><span class="si">%(src_pkg)s</span><span class="s2">&quot;</span> \
+    <span class="s2">&quot;/</span><span class="si">%(src_pkg)s</span><span class="s2">_</span><span class="si">%(src_ver)s</span><span class="s2">/changelog&quot;</span>
+</pre></div>
+</div>
+<p>The parameter <em>cancel_lock</em> refers to an instance of threading.Lock,
+which if set, prevents the download.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.has_config_files">
+<code class="descname">has_config_files</code><a class="headerlink" href="#apt.package.Package.has_config_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the package is is the config-files state.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.id">
+<code class="descname">id</code><a class="headerlink" href="#apt.package.Package.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a uniq ID for the package.</p>
+<p>This can be used eg. to store additional information about the pkg.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.installed">
+<code class="descname">installed</code><a class="headerlink" href="#apt.package.Package.installed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the currently installed version of the package.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.9.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.installed_files">
+<code class="descname">installed_files</code><a class="headerlink" href="#apt.package.Package.installed_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of files installed by the package.</p>
+<p>Return a list of unicode names of the files which have
+been installed by this package</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.is_auto_installed">
+<code class="descname">is_auto_installed</code><a class="headerlink" href="#apt.package.Package.is_auto_installed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the package is marked as automatically installed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.is_auto_removable">
+<code class="descname">is_auto_removable</code><a class="headerlink" href="#apt.package.Package.is_auto_removable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is no longer required.</p>
+<p>If the package has been installed automatically as a dependency of
+another package, and if no packages depend on it anymore, the package
+is no longer required.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.is_inst_broken">
+<code class="descname">is_inst_broken</code><a class="headerlink" href="#apt.package.Package.is_inst_broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the to-be-installed package is broken.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.is_installed">
+<code class="descname">is_installed</code><a class="headerlink" href="#apt.package.Package.is_installed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is installed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.is_now_broken">
+<code class="descname">is_now_broken</code><a class="headerlink" href="#apt.package.Package.is_now_broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the installed package is broken.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.is_upgradable">
+<code class="descname">is_upgradable</code><a class="headerlink" href="#apt.package.Package.is_upgradable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is upgradable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Package.mark_auto">
+<code class="descname">mark_auto</code><span class="sig-paren">(</span><em>auto=True</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.mark_auto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark a package as automatically installed.</p>
+<p>Call this function to mark a package as automatically installed. If the
+optional parameter <em>auto</em> is set to <code class="docutils literal"><span class="pre">False</span></code>, the package will not be
+marked as automatically installed anymore. The default is <code class="docutils literal"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Package.mark_delete">
+<code class="descname">mark_delete</code><span class="sig-paren">(</span><em>auto_fix=True</em>, <em>purge=False</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.mark_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark a package for deletion.</p>
+<p>If <em>auto_fix</em> is <code class="docutils literal"><span class="pre">True</span></code>, the resolver will be run, trying to fix
+broken packages.  This is the default.</p>
+<p>If <em>purge</em> is <code class="docutils literal"><span class="pre">True</span></code>, remove the configuration files of the package
+as well.  The default is to keep the configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Package.mark_install">
+<code class="descname">mark_install</code><span class="sig-paren">(</span><em>auto_fix=True</em>, <em>auto_inst=True</em>, <em>from_user=True</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.mark_install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark a package for install.</p>
+<p>If <em>autoFix</em> is <code class="docutils literal"><span class="pre">True</span></code>, the resolver will be run, trying to fix
+broken packages.  This is the default.</p>
+<p>If <em>autoInst</em> is <code class="docutils literal"><span class="pre">True</span></code>, the dependencies of the packages will be
+installed automatically.  This is the default.</p>
+<p>If <em>fromUser</em> is <code class="docutils literal"><span class="pre">True</span></code>, this package will not be marked as
+automatically installed. This is the default. Set it to False if you
+want to be able to automatically remove the package at a later stage
+when no other package depends on it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Package.mark_keep">
+<code class="descname">mark_keep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.mark_keep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark a package for keep.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Package.mark_upgrade">
+<code class="descname">mark_upgrade</code><span class="sig-paren">(</span><em>from_user=True</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Package.mark_upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark a package for upgrade.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.marked_delete">
+<code class="descname">marked_delete</code><a class="headerlink" href="#apt.package.Package.marked_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is marked for delete.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.marked_downgrade">
+<code class="descname">marked_downgrade</code><a class="headerlink" href="#apt.package.Package.marked_downgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Package is marked for downgrade</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.marked_install">
+<code class="descname">marked_install</code><a class="headerlink" href="#apt.package.Package.marked_install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is marked for install.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.marked_keep">
+<code class="descname">marked_keep</code><a class="headerlink" href="#apt.package.Package.marked_keep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is marked for keep.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.marked_reinstall">
+<code class="descname">marked_reinstall</code><a class="headerlink" href="#apt.package.Package.marked_reinstall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is marked for reinstall.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.marked_upgrade">
+<code class="descname">marked_upgrade</code><a class="headerlink" href="#apt.package.Package.marked_upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the package is marked for upgrade.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.name">
+<code class="descname">name</code><a class="headerlink" href="#apt.package.Package.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the package, possibly including architecture.</p>
+<p>If the package is not part of the system&#8217;s preferred architecture,
+return the same as <a class="reference internal" href="#apt.package.Package.fullname" title="apt.package.Package.fullname"><code class="xref py py-attr docutils literal"><span class="pre">fullname</span></code></a>, otherwise return the same
+as <a class="reference internal" href="#apt.package.Package.shortname" title="apt.package.Package.shortname"><code class="xref py py-attr docutils literal"><span class="pre">shortname</span></code></a></p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.7.100.3.</span></p>
+</div>
+<p>As part of multi-arch, this field now may include architecture
+information.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.section">
+<code class="descname">section</code><a class="headerlink" href="#apt.package.Package.section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the section of the package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.shortname">
+<code class="descname">shortname</code><a class="headerlink" href="#apt.package.Package.shortname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the package, without architecture.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.100.3.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Package.versions">
+<code class="descname">versions</code><a class="headerlink" href="#apt.package.Package.versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a VersionList() object for all available versions.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.9.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-version-class">
+<h2>The Version class<a class="headerlink" href="#the-version-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.package.Version">
+<em class="property">class </em><code class="descclassname">apt.package.</code><code class="descname">Version</code><span class="sig-paren">(</span><em>package</em>, <em>cand</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of a package version.</p>
+<p>The Version class contains all information related to a
+specific package version.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.9.</span></p>
+</div>
+<dl class="attribute">
+<dt id="apt.package.Version.architecture">
+<code class="descname">architecture</code><a class="headerlink" href="#apt.package.Version.architecture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the architecture of the package version.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.dependencies">
+<code class="descname">dependencies</code><a class="headerlink" href="#apt.package.Version.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dependencies of the package version.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.description">
+<code class="descname">description</code><a class="headerlink" href="#apt.package.Version.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the formatted long description.</p>
+<p>Return the formatted long description according to the Debian policy
+(Chapter 5.6.13).
+See <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-controlfields.html">http://www.debian.org/doc/debian-policy/ch-controlfields.html</a>
+for more information.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.downloadable">
+<code class="descname">downloadable</code><a class="headerlink" href="#apt.package.Version.downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the version of the package is downloadable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.enhances">
+<code class="descname">enhances</code><a class="headerlink" href="#apt.package.Version.enhances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of enhances for the package version.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Version.fetch_binary">
+<code class="descname">fetch_binary</code><span class="sig-paren">(</span><em>destdir=''</em>, <em>progress=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Version.fetch_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the binary version of the package.</p>
+<p>The parameter <em>destdir</em> specifies the directory where the package will
+be fetched to.</p>
+<p>The parameter <em>progress</em> may refer to an apt_pkg.AcquireProgress()
+object. If not specified or None, apt.progress.text.AcquireProgress()
+is used.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Version.fetch_source">
+<code class="descname">fetch_source</code><span class="sig-paren">(</span><em>destdir=''</em>, <em>progress=None</em>, <em>unpack=True</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Version.fetch_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the source code of a package.</p>
+<p>The parameter <em>destdir</em> specifies the directory where the source will
+be fetched to.</p>
+<p>The parameter <em>progress</em> may refer to an apt_pkg.AcquireProgress()
+object. If not specified or None, apt.progress.text.AcquireProgress()
+is used.</p>
+<p>The parameter <em>unpack</em> describes whether the source should be unpacked
+(<code class="docutils literal"><span class="pre">True</span></code>) or not (<code class="docutils literal"><span class="pre">False</span></code>). By default, it is unpacked.</p>
+<p>If <em>unpack</em> is <code class="docutils literal"><span class="pre">True</span></code>, the path to the extracted directory is
+returned. Otherwise, the path to the .dsc file is returned.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.filename">
+<code class="descname">filename</code><a class="headerlink" href="#apt.package.Version.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the file inside the archive.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Version.get_dependencies">
+<code class="descname">get_dependencies</code><span class="sig-paren">(</span><em>*types</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Version.get_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of Dependency objects for the given types.</p>
+<p>Multiple types can be specified. Possible types are:
+&#8216;Breaks&#8217;, &#8216;Conflicts&#8217;, &#8216;Depends&#8217;, &#8216;Enhances&#8217;, &#8216;PreDepends&#8217;,
+&#8216;Recommends&#8217;, &#8216;Replaces&#8217;, &#8216;Suggests&#8217;</p>
+<p>Additional types might be added in the future.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.homepage">
+<code class="descname">homepage</code><a class="headerlink" href="#apt.package.Version.homepage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the homepage for the package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.installed_size">
+<code class="descname">installed_size</code><a class="headerlink" href="#apt.package.Version.installed_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the size of the package when installed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.is_installed">
+<code class="descname">is_installed</code><a class="headerlink" href="#apt.package.Version.is_installed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return wether this version of the package is currently installed.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.md5">
+<code class="descname">md5</code><a class="headerlink" href="#apt.package.Version.md5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the md5sum of the binary.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.origins">
+<code class="descname">origins</code><a class="headerlink" href="#apt.package.Version.origins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of origins for the package version.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.policy_priority">
+<code class="descname">policy_priority</code><a class="headerlink" href="#apt.package.Version.policy_priority" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the internal policy priority as a number.
+See apt_preferences(5) for more information about what it means.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.priority">
+<code class="descname">priority</code><a class="headerlink" href="#apt.package.Version.priority" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the priority of the package, as string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.provides">
+<code class="descname">provides</code><a class="headerlink" href="#apt.package.Version.provides" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of names that this version provides.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.raw_description">
+<code class="descname">raw_description</code><a class="headerlink" href="#apt.package.Version.raw_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the long description (raw).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.recommends">
+<code class="descname">recommends</code><a class="headerlink" href="#apt.package.Version.recommends" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the recommends of the package version.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.record">
+<code class="descname">record</code><a class="headerlink" href="#apt.package.Version.record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Record() object for this version.</p>
+<p>Return a Record() object for this version which provides access
+to the raw attributes of the candidate version</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.section">
+<code class="descname">section</code><a class="headerlink" href="#apt.package.Version.section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the section of the package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.sha1">
+<code class="descname">sha1</code><a class="headerlink" href="#apt.package.Version.sha1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the sha1sum of the binary.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.sha256">
+<code class="descname">sha256</code><a class="headerlink" href="#apt.package.Version.sha256" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the sha256sum of the binary.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.size">
+<code class="descname">size</code><a class="headerlink" href="#apt.package.Version.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the size of the package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.source_name">
+<code class="descname">source_name</code><a class="headerlink" href="#apt.package.Version.source_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the source package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.source_version">
+<code class="descname">source_version</code><a class="headerlink" href="#apt.package.Version.source_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the version of the source package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.suggests">
+<code class="descname">suggests</code><a class="headerlink" href="#apt.package.Version.suggests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the suggests of the package version.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.summary">
+<code class="descname">summary</code><a class="headerlink" href="#apt.package.Version.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the short description (one line summary).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.tasks">
+<code class="descname">tasks</code><a class="headerlink" href="#apt.package.Version.tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks of the package.</p>
+<p>A set of the names of the tasks this package belongs to.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.8.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.uri">
+<code class="descname">uri</code><a class="headerlink" href="#apt.package.Version.uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single URI for the binary.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.uris">
+<code class="descname">uris</code><a class="headerlink" href="#apt.package.Version.uris" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all available uris for the binary.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Version.version">
+<code class="descname">version</code><a class="headerlink" href="#apt.package.Version.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the version as a string.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="dependency-information">
+<h2>Dependency Information<a class="headerlink" href="#dependency-information" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.package.BaseDependency">
+<em class="property">class </em><code class="descclassname">apt.package.</code><code class="descname">BaseDependency</code><span class="sig-paren">(</span><em>version</em>, <em>dep</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.BaseDependency" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single dependency.</p>
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.installed_target_versions">
+<code class="descname">installed_target_versions</code><a class="headerlink" href="#apt.package.BaseDependency.installed_target_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all installed Version objects which satisfy this dep.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.name">
+<code class="descname">name</code><a class="headerlink" href="#apt.package.BaseDependency.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the target package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.pre_depend">
+<code class="descname">pre_depend</code><a class="headerlink" href="#apt.package.BaseDependency.pre_depend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this is a PreDepends.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.rawstr">
+<code class="descname">rawstr</code><a class="headerlink" href="#apt.package.BaseDependency.rawstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>String represenation of the dependency.</p>
+<p>Returns the string representation of the dependency as it would be
+written in the debian/control file.  The string representation does not
+include the type of the dependency.</p>
+<dl class="docutils">
+<dt>Example for an unversioned dependency:</dt>
+<dd>python3</dd>
+<dt>Example for a versioned dependency:</dt>
+<dd>python3 &gt;= 3.2</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.rawtype">
+<code class="descname">rawtype</code><a class="headerlink" href="#apt.package.BaseDependency.rawtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of the dependency.</p>
+<p>This should be one of &#8216;Breaks&#8217;, &#8216;Conflicts&#8217;, &#8216;Depends&#8217;, &#8216;Enhances&#8217;,
+&#8216;PreDepends&#8217;, &#8216;Recommends&#8217;, &#8216;Replaces&#8217;, &#8216;Suggests&#8217;.</p>
+<p>Additional types might be added in the future.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.relation">
+<code class="descname">relation</code><a class="headerlink" href="#apt.package.BaseDependency.relation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The relation (&lt;, &lt;=, =, !=, &gt;=, &gt;, &#8216;&#8217;) in mathematical notation.</p>
+<p>The empty string will be returned in case of an unversioned dependency.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.relation_deb">
+<code class="descname">relation_deb</code><a class="headerlink" href="#apt.package.BaseDependency.relation_deb" title="Permalink to this definition">¶</a></dt>
+<dd><p>The relation (&lt;&lt;, &lt;=, =, !=, &gt;=, &gt;&gt;, &#8216;&#8217;) in Debian notation.</p>
+<p>The empty string will be returned in case of an unversioned dependency.
+For more details see the Debian Policy Manual on the syntax of
+relationship fields:
+<a class="reference external" href="https://www.debian.org/doc/debian-policy/ch-relationships.html#s-depsyntax">https://www.debian.org/doc/debian-policy/ch-relationships.html#s-depsyntax</a>  # noqa</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.target_versions">
+<code class="descname">target_versions</code><a class="headerlink" href="#apt.package.BaseDependency.target_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all Version objects which satisfy this dependency.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.BaseDependency.version">
+<code class="descname">version</code><a class="headerlink" href="#apt.package.BaseDependency.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>The target version or an empty string.</p>
+<p>Note that the version is only an empty string in case of an unversioned
+dependency. In this case the relation is also an empty string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="apt.package.Dependency">
+<em class="property">class </em><code class="descclassname">apt.package.</code><code class="descname">Dependency</code><a class="headerlink" href="#apt.package.Dependency" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dependency class represents a Or-Group of dependencies. It provides
+an attribute to access the <a class="reference internal" href="#apt.package.BaseDependency" title="apt.package.BaseDependency"><code class="xref py py-class docutils literal"><span class="pre">BaseDependency</span></code></a> object for the available
+choices.</p>
+<dl class="attribute">
+<dt id="apt.package.Dependency.or_dependencies">
+<code class="descname">or_dependencies</code><a class="headerlink" href="#apt.package.Dependency.or_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#apt.package.BaseDependency" title="apt.package.BaseDependency"><code class="xref py py-class docutils literal"><span class="pre">BaseDependency</span></code></a> objects which could satisfy the
+requirement of the Or-Group.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="origin-information">
+<h2>Origin Information<a class="headerlink" href="#origin-information" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.package.Origin">
+<em class="property">class </em><code class="descclassname">apt.package.</code><code class="descname">Origin</code><a class="headerlink" href="#apt.package.Origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#apt.package.Origin" title="apt.package.Origin"><code class="xref py py-class docutils literal"><span class="pre">Origin</span></code></a> class provides access to the origin of the package.
+It allows you to check the component, archive, the hostname, and even if
+this package can be trusted.</p>
+<dl class="attribute">
+<dt id="apt.package.Origin.archive">
+<code class="descname">archive</code><a class="headerlink" href="#apt.package.Origin.archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>The archive (eg. unstable)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Origin.component">
+<code class="descname">component</code><a class="headerlink" href="#apt.package.Origin.component" title="Permalink to this definition">¶</a></dt>
+<dd><p>The component (eg. main)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Origin.label">
+<code class="descname">label</code><a class="headerlink" href="#apt.package.Origin.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Label, as set in the Release file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Origin.origin">
+<code class="descname">origin</code><a class="headerlink" href="#apt.package.Origin.origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Origin, as set in the Release file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Origin.site">
+<code class="descname">site</code><a class="headerlink" href="#apt.package.Origin.site" title="Permalink to this definition">¶</a></dt>
+<dd><p>The hostname of the site.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.package.Origin.trusted">
+<code class="descname">trusted</code><a class="headerlink" href="#apt.package.Origin.trusted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean value whether this is trustworthy. An origin can be trusted, if
+it provides a GPG-signed Release file and the GPG-key used is in the
+keyring used by apt (see apt-key).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-record-class">
+<h2>The Record class<a class="headerlink" href="#the-record-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.package.Record">
+<em class="property">class </em><code class="descclassname">apt.package.</code><code class="descname">Record</code><span class="sig-paren">(</span><em>record_str</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record in a Packages file</p>
+<p>Represent a record as stored in a Packages file. You can use this like
+a dictionary mapping the field names of the record to their values:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">Record</span><span class="p">(</span><span class="s2">&quot;Package: python-apt</span><span class="se">\n</span><span class="s2">Version: 0.8.0</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;Package&quot;</span><span class="p">]</span>
+<span class="go">&#39;python-apt&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;Version&quot;</span><span class="p">]</span>
+<span class="go">&#39;0.8.0&#39;</span>
+</pre></div>
+</div>
+<p>For example, to get the tasks of a package from a cache, you could do:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">.</span><span class="n">candidate</span><span class="o">.</span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;Tasks&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Of course, you can also use the <a class="reference internal" href="#apt.package.Version.tasks" title="apt.package.Version.tasks"><code class="xref py py-attr docutils literal"><span class="pre">Version.tasks</span></code></a> property.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="last versionchanged">
+<p><span class="versionmodified">Changed in version 0.7.100: </span>This class is a subclass of <a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.Mapping" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">collections.Mapping</span></code></a> when used
+in Python 2.6 or newer.</p>
+</div>
+</div>
+<dl class="describe">
+<dt>
+<code class="descname">record[name]</code></dt>
+<dd><p>Return the value of the field with the name <em>name</em>.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">name in record</code></dt>
+<dd><p>Return whether a field <em>name</em> exists in record.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">len(record)</code></dt>
+<dd><p>The number of fields in the record</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">str(record)</code></dt>
+<dd><p>Display the record as a string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Record.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Record.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return record[key] if key in record, else <em>default</em>.</p>
+<p>The parameter <em>default</em> must be either a string or None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Record.has_key">
+<code class="descname">has_key</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Record.has_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>deprecated form of <code class="docutils literal"><span class="pre">key</span> <span class="pre">in</span> <span class="pre">x</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.package.Record.iteritems">
+<code class="descname">iteritems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.package.Record.iteritems" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterator over the (key, value) items of the record.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">apt</span>
+
+<span class="n">cache</span> <span class="o">=</span> <span class="n">apt</span><span class="o">.</span><span class="n">Cache</span><span class="p">()</span>
+<span class="n">pkg</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="s1">&#39;python-apt&#39;</span><span class="p">]</span> <span class="c1"># Access the Package object for python-apt</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;python-apt is trusted:&#39;</span><span class="p">,</span> <span class="n">pkg</span><span class="o">.</span><span class="n">candidate</span><span class="o">.</span><span class="n">origins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">trusted</span><span class="p">)</span>
+
+<span class="c1"># Mark python-apt for install</span>
+<span class="n">pkg</span><span class="o">.</span><span class="n">mark_install</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;python-apt is marked for install:&#39;</span><span class="p">,</span> <span class="n">pkg</span><span class="o">.</span><span class="n">marked_install</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;python-apt is (summary):&#39;</span><span class="p">,</span> <span class="n">pkg</span><span class="o">.</span><span class="n">candidate</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+
+<span class="c1"># Now, really install it</span>
+<span class="n">cache</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">apt.package</span></code> &#8212; Classes for package handling</a><ul>
+<li><a class="reference internal" href="#the-package-class">The Package class</a></li>
+<li><a class="reference internal" href="#the-version-class">The Version class</a></li>
+<li><a class="reference internal" href="#dependency-information">Dependency Information</a></li>
+<li><a class="reference internal" href="#origin-information">Origin Information</a></li>
+<li><a class="reference internal" href="#the-record-class">The Record class</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python APT Library</a><ul>
+      <li>Previous: <a href="apt.debfile.html" title="previous chapter"><code class="docutils literal"><span class="pre">apt.debfile</span></code> &#8212; Classes related to debian package files</a></li>
+      <li>Next: <a href="apt.progress.base.html" title="next chapter"><code class="docutils literal"><span class="pre">apt.progress.base</span></code> &#8212; Abstract classes for progress reporting</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/library/apt.package.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/library/apt.package.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

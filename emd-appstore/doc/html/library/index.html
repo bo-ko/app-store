@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python APT Library &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="next" title="apt_pkg — The low-level bindings for apt-pkg" href="apt_pkg.html" />
+    <link rel="prev" title="What’s New In python-apt 1.4" href="../whatsnew/1.4.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="python-apt-library">
+<h1>Python APT Library<a class="headerlink" href="#python-apt-library" title="Permalink to this headline">¶</a></h1>
+<p>Python APT&#8217;s library provides access to almost every functionality supported
+by the underlying apt-pkg and apt-inst libraries. This means that it is
+possible to rewrite frontend programs like apt-cdrom in Python, and this is
+relatively easy, as can be seen in e.g. <a class="reference internal" href="../tutorials/apt-cdrom.html"><span class="doc">Writing your own apt-cdrom</span></a>.</p>
+<p>When going through the library, the first two modules are <a class="reference internal" href="apt_pkg.html#module-apt_pkg" title="apt_pkg"><code class="xref py py-mod docutils literal"><span class="pre">apt_pkg</span></code></a> and
+<a class="reference internal" href="apt_inst.html#module-apt_inst" title="apt_inst"><code class="xref py py-mod docutils literal"><span class="pre">apt_inst</span></code></a>. These modules are more or less straight bindings to the
+apt-pkg and apt-inst libraries and the base for the rest of python-apt.</p>
+<p>Going forward, the <code class="xref py py-mod docutils literal"><span class="pre">apt</span></code> package appears. This package is using
+<a class="reference internal" href="apt_pkg.html#module-apt_pkg" title="apt_pkg"><code class="xref py py-mod docutils literal"><span class="pre">apt_pkg</span></code></a> and <a class="reference internal" href="apt_inst.html#module-apt_inst" title="apt_inst"><code class="xref py py-mod docutils literal"><span class="pre">apt_inst</span></code></a> to provide easy to use ways to manipulate
+the cache, fetch packages, or install new packages. It also provides useful
+progress classes, currently only for text interfaces. The last package is
+<code class="xref py py-mod docutils literal"><span class="pre">aptsources</span></code>. The aptsources package provides classes and functions to
+read files like <code class="file docutils literal"><span class="pre">/etc/apt/sources.list</span></code> and to modify them.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apt_pkg.html"><code class="docutils literal"><span class="pre">apt_pkg</span></code> &#8212; The low-level bindings for apt-pkg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apt_inst.html"><code class="docutils literal"><span class="pre">apt_inst</span></code> - Working with local Debian packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apt.cache.html"><code class="docutils literal"><span class="pre">apt.cache</span></code> &#8212; The Cache class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apt.cdrom.html"><code class="docutils literal"><span class="pre">apt.cdrom</span></code> - Functionality like in apt-cdrom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apt.debfile.html"><code class="docutils literal"><span class="pre">apt.debfile</span></code> &#8212; Classes related to debian package files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apt.package.html"><code class="docutils literal"><span class="pre">apt.package</span></code> &#8212; Classes for package handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apt.progress.base.html"><code class="docutils literal"><span class="pre">apt.progress.base</span></code> &#8212; Abstract classes for progress reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apt.progress.text.html"><code class="docutils literal"><span class="pre">apt.progress.text</span></code> &#8212; Progress reporting for text interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aptsources.distinfo.html"><code class="docutils literal"><span class="pre">aptsources.distinfo</span></code> &#8212; provide meta information for distro repositories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aptsources.distro.html"><code class="docutils literal"><span class="pre">aptsources.distro</span></code> &#8212; Distribution abstraction of the sources.list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aptsources.sourceslist.html"><code class="docutils literal"><span class="pre">aptsources.sourceslist</span></code> &#8212; Provide an abstraction of the sources.list</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../whatsnew/1.4.html" title="previous chapter">What&#8217;s New In python-apt 1.4</a></li>
+      <li>Next: <a href="apt_pkg.html" title="next chapter"><code class="docutils literal"><span class="pre">apt_pkg</span></code> &#8212; The low-level bindings for apt-pkg</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/library/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/library/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

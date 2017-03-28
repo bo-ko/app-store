@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>aptsources.sourceslist — Provide an abstraction of the sources.list &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="Python APT Library" href="index.html" />
+    <link rel="next" title="Tutorials" href="../tutorials/index.html" />
+    <link rel="prev" title="aptsources.distro — Distribution abstraction of the sources.list" href="aptsources.distro.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="aptsources-sourceslist-provide-an-abstraction-of-the-sources-list">
+<h1><a class="reference internal" href="#module-aptsources.sourceslist" title="aptsources.sourceslist"><code class="xref py py-mod docutils literal"><span class="pre">aptsources.sourceslist</span></code></a> &#8212; Provide an abstraction of the sources.list<a class="headerlink" href="#aptsources-sourceslist-provide-an-abstraction-of-the-sources-list" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This part of the documentation is created automatically.</p>
+</div>
+<span class="target" id="module-aptsources.sourceslist"></span><dl class="function">
+<dt id="aptsources.sourceslist.is_mirror">
+<code class="descclassname">aptsources.sourceslist.</code><code class="descname">is_mirror</code><span class="sig-paren">(</span><em>master_uri</em>, <em>compare_uri</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.is_mirror" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if the given add_url is idential or a mirror of orig_uri e.g.:
+master_uri = archive.ubuntu.com
+compare_uri = de.archive.ubuntu.com
+-&gt; True</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="aptsources.sourceslist.SourceEntry">
+<em class="property">class </em><code class="descclassname">aptsources.sourceslist.</code><code class="descname">SourceEntry</code><span class="sig-paren">(</span><em>line</em>, <em>file=None</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourceEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>single sources.list entry</p>
+<dl class="method">
+<dt id="aptsources.sourceslist.SourceEntry.mysplit">
+<code class="descname">mysplit</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourceEntry.mysplit" title="Permalink to this definition">¶</a></dt>
+<dd><p>a split() implementation that understands the sources.list
+format better and takes [] into account (for e.g. cdroms)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourceEntry.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourceEntry.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>parse a given sources.list (textual) line and break it up
+into the field we have</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourceEntry.set_enabled">
+<code class="descname">set_enabled</code><span class="sig-paren">(</span><em>new_value</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourceEntry.set_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>set a line to enabled or disabled</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourceEntry.str">
+<code class="descname">str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourceEntry.str" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the current line as string</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aptsources.sourceslist.NullMatcher">
+<em class="property">class </em><code class="descclassname">aptsources.sourceslist.</code><code class="descname">NullMatcher</code><a class="headerlink" href="#aptsources.sourceslist.NullMatcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>a Matcher that does nothing</p>
+<dl class="method">
+<dt id="aptsources.sourceslist.NullMatcher.match">
+<code class="descname">match</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.NullMatcher.match" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aptsources.sourceslist.SourcesList">
+<em class="property">class </em><code class="descclassname">aptsources.sourceslist.</code><code class="descname">SourcesList</code><span class="sig-paren">(</span><em>withMatcher=True</em>, <em>matcherPath='/usr/share/python-apt/templates/'</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList" title="Permalink to this definition">¶</a></dt>
+<dd><p>represents the full sources.list + sources.list.d file</p>
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>type</em>, <em>uri</em>, <em>dist</em>, <em>orig_comps</em>, <em>comment=''</em>, <em>pos=-1</em>, <em>file=None</em>, <em>architectures=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new source to the sources.list.
+The method will search for existing matching repos and will try to
+reuse them as far as possible</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.backup">
+<code class="descname">backup</code><span class="sig-paren">(</span><em>backup_ext=None</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.backup" title="Permalink to this definition">¶</a></dt>
+<dd><p>make a backup of the current source files, if no backup extension
+is given, the current date/time is used (and returned)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.check_for_relations">
+<code class="descname">check_for_relations</code><span class="sig-paren">(</span><em>sources_list</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.check_for_relations" title="Permalink to this definition">¶</a></dt>
+<dd><p>get all parent and child channels in the sources list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>(re)load the current sources</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.refresh">
+<code class="descname">refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>update the list of known entries</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>source_entry</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>remove the specified entry from the sources.list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.restore_backup">
+<code class="descname">restore_backup</code><span class="sig-paren">(</span><em>backup_ext</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.restore_backup" title="Permalink to this definition">¶</a></dt>
+<dd><p>restore sources.list files based on the backup extension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aptsources.sourceslist.SourcesList.save">
+<code class="descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourcesList.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>save the current sources</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aptsources.sourceslist.SourceEntryMatcher">
+<em class="property">class </em><code class="descclassname">aptsources.sourceslist.</code><code class="descname">SourceEntryMatcher</code><span class="sig-paren">(</span><em>matcherPath</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourceEntryMatcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>matcher class to make a source entry look nice
+lots of predefined matchers to make it i18n/gettext friendly</p>
+<dl class="method">
+<dt id="aptsources.sourceslist.SourceEntryMatcher.match">
+<code class="descname">match</code><span class="sig-paren">(</span><em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#aptsources.sourceslist.SourceEntryMatcher.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a matching template to the source</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python APT Library</a><ul>
+      <li>Previous: <a href="aptsources.distro.html" title="previous chapter"><code class="docutils literal"><span class="pre">aptsources.distro</span></code> &#8212; Distribution abstraction of the sources.list</a></li>
+      <li>Next: <a href="../tutorials/index.html" title="next chapter">Tutorials</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/library/aptsources.sourceslist.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/library/aptsources.sourceslist.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

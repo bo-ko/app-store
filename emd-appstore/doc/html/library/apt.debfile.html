@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>apt.debfile — Classes related to debian package files &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="Python APT Library" href="index.html" />
+    <link rel="next" title="apt.package — Classes for package handling" href="apt.package.html" />
+    <link rel="prev" title="apt.cdrom - Functionality like in apt-cdrom" href="apt.cdrom.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="apt-debfile-classes-related-to-debian-package-files">
+<h1><a class="reference internal" href="#module-apt.debfile" title="apt.debfile"><code class="xref py py-mod docutils literal"><span class="pre">apt.debfile</span></code></a> &#8212; Classes related to debian package files<a class="headerlink" href="#apt-debfile-classes-related-to-debian-package-files" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-apt.debfile" title="apt.debfile"><code class="xref py py-mod docutils literal"><span class="pre">apt.debfile</span></code></a> provides classes to work with locally available
+debian packages, or source packages.</p>
+<span class="target" id="module-apt.debfile"></span><div class="section" id="binary-packages">
+<h2>Binary packages<a class="headerlink" href="#binary-packages" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.debfile.DebPackage">
+<em class="property">class </em><code class="descclassname">apt.debfile.</code><code class="descname">DebPackage</code><span class="sig-paren">(</span><em>filename=None</em>, <em>cache=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Debian Package (.deb file).</p>
+<p>The <a class="reference internal" href="#apt.debfile.DebPackage" title="apt.debfile.DebPackage"><code class="xref py py-class docutils literal"><span class="pre">DebPackage</span></code></a> class is a class for working with &#8216;.deb&#8217; files,
+also known as Debian packages.</p>
+<p>It provides methods and attributes to get a list of the files in the
+package, to install the package and much more.</p>
+<p>If you specify <em>cache</em> it has to point to an <a class="reference internal" href="apt.cache.html#apt.cache.Cache" title="apt.cache.Cache"><code class="xref py py-class docutils literal"><span class="pre">apt.cache.Cache()</span></code></a>
+object.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.7.9: </span>Introduce all new methods (everything except for <a class="reference internal" href="#apt.debfile.DebPackage.open" title="apt.debfile.DebPackage.open"><code class="xref py py-meth docutils literal"><span class="pre">open()</span></code></a> and
+<a class="reference internal" href="#apt.debfile.DebPackage.filelist" title="apt.debfile.DebPackage.filelist"><code class="xref py py-attr docutils literal"><span class="pre">filelist</span></code></a>)</p>
+</div>
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.VERSION_NEWER">
+<code class="descname">VERSION_NEWER</code><em class="property"> = 3</em><a class="headerlink" href="#apt.debfile.DebPackage.VERSION_NEWER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.VERSION_NONE">
+<code class="descname">VERSION_NONE</code><em class="property"> = 0</em><a class="headerlink" href="#apt.debfile.DebPackage.VERSION_NONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.VERSION_OUTDATED">
+<code class="descname">VERSION_OUTDATED</code><em class="property"> = 1</em><a class="headerlink" href="#apt.debfile.DebPackage.VERSION_OUTDATED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.VERSION_SAME">
+<code class="descname">VERSION_SAME</code><em class="property"> = 2</em><a class="headerlink" href="#apt.debfile.DebPackage.VERSION_SAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.check">
+<code class="descname">check</code><span class="sig-paren">(</span><em>allow_downgrade=False</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the package is installable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.check_breaks_existing_packages">
+<code class="descname">check_breaks_existing_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.check_breaks_existing_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if installing the package would break exsisting
+package on the system, e.g. system has:
+smc depends on smc-data (= 1.4)
+and user tries to installs smc-data 1.6</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.check_conflicts">
+<code class="descname">check_conflicts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.check_conflicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if there are conflicts with existing or selected packages.</p>
+<p>Check if the package conflicts with a existing or to be installed
+package. Return True if the pkg is OK.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.compare_to_version_in_cache">
+<code class="descname">compare_to_version_in_cache</code><span class="sig-paren">(</span><em>use_installed=True</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.compare_to_version_in_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the package to the version available in the cache.</p>
+<p>Checks if the package is already installed or availabe in the cache
+and if so in what version, returns one of (VERSION_NONE,
+VERSION_OUTDATED, VERSION_SAME, VERSION_NEWER).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.conflicts">
+<code class="descname">conflicts</code><a class="headerlink" href="#apt.debfile.DebPackage.conflicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of package names conflicting with this package.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.control_content">
+<code class="descname">control_content</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.control_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the content of a specific control.tar.gz file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.control_filelist">
+<code class="descname">control_filelist</code><a class="headerlink" href="#apt.debfile.DebPackage.control_filelist" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the list of files in control.tar.gz</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.data_content">
+<code class="descname">data_content</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.data_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the content of a specific control.tar.gz file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.debug">
+<code class="descname">debug</code><em class="property"> = 0</em><a class="headerlink" href="#apt.debfile.DebPackage.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.depends">
+<code class="descname">depends</code><a class="headerlink" href="#apt.debfile.DebPackage.depends" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of package names on which this package depends on.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.filelist">
+<code class="descname">filelist</code><a class="headerlink" href="#apt.debfile.DebPackage.filelist" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the list of files in the deb.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.install">
+<code class="descname">install</code><span class="sig-paren">(</span><em>install_progress=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install the package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.missing_deps">
+<code class="descname">missing_deps</code><a class="headerlink" href="#apt.debfile.DebPackage.missing_deps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return missing dependencies.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.open">
+<code class="descname">open</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>open given debfile</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.provides">
+<code class="descname">provides</code><a class="headerlink" href="#apt.debfile.DebPackage.provides" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of virtual packages which are provided by this package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.replaces">
+<code class="descname">replaces</code><a class="headerlink" href="#apt.debfile.DebPackage.replaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of packages which are replaced by this package.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.replaces_real_pkg">
+<code class="descname">replaces_real_pkg</code><span class="sig-paren">(</span><em>pkgname</em>, <em>oper</em>, <em>ver</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.replaces_real_pkg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if a given non-virtual package is replaced.</p>
+<p>Return True if the deb packages replaces a real (not virtual)
+packages named (pkgname, oper, ver).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DebPackage.required_changes">
+<code class="descname">required_changes</code><a class="headerlink" href="#apt.debfile.DebPackage.required_changes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the changes required to satisfy the dependencies.</p>
+<p>Returns: a tuple with (install, remove, unauthenticated)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DebPackage.satisfy_depends_str">
+<code class="descname">satisfy_depends_str</code><span class="sig-paren">(</span><em>dependsstr</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.satisfy_depends_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Satisfy the dependencies in the given string.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="apt.debfile.DebPackage.to_hex">
+<em class="property">static </em><code class="descname">to_hex</code><span class="sig-paren">(</span><em>in_data</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.to_hex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="apt.debfile.DebPackage.to_strish">
+<em class="property">static </em><code class="descname">to_strish</code><span class="sig-paren">(</span><em>in_data</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DebPackage.to_strish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="source-packages">
+<h2>Source packages<a class="headerlink" href="#source-packages" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="apt.debfile.DscSrcPackage">
+<em class="property">class </em><code class="descclassname">apt.debfile.</code><code class="descname">DscSrcPackage</code><span class="sig-paren">(</span><em>filename=None</em>, <em>cache=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A locally available source package.</p>
+<p>Provide functionality to work with locally available source packages,
+especially with their &#8216;.dsc&#8217; file.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.7.9.</span></p>
+</div>
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.VERSION_NEWER">
+<code class="descname">VERSION_NEWER</code><em class="property"> = 3</em><a class="headerlink" href="#apt.debfile.DscSrcPackage.VERSION_NEWER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.VERSION_NONE">
+<code class="descname">VERSION_NONE</code><em class="property"> = 0</em><a class="headerlink" href="#apt.debfile.DscSrcPackage.VERSION_NONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.VERSION_OUTDATED">
+<code class="descname">VERSION_OUTDATED</code><em class="property"> = 1</em><a class="headerlink" href="#apt.debfile.DscSrcPackage.VERSION_OUTDATED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.VERSION_SAME">
+<code class="descname">VERSION_SAME</code><em class="property"> = 2</em><a class="headerlink" href="#apt.debfile.DscSrcPackage.VERSION_SAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.check">
+<code class="descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the package is installable..</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.check_breaks_existing_packages">
+<code class="descname">check_breaks_existing_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.check_breaks_existing_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if installing the package would break exsisting
+package on the system, e.g. system has:
+smc depends on smc-data (= 1.4)
+and user tries to installs smc-data 1.6</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.check_conflicts">
+<code class="descname">check_conflicts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.check_conflicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if there are conflicts with existing or selected packages.</p>
+<p>Check if the package conflicts with a existing or to be installed
+package. Return True if the pkg is OK.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.compare_to_version_in_cache">
+<code class="descname">compare_to_version_in_cache</code><span class="sig-paren">(</span><em>use_installed=True</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.compare_to_version_in_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the package to the version available in the cache.</p>
+<p>Checks if the package is already installed or availabe in the cache
+and if so in what version, returns one of (VERSION_NONE,
+VERSION_OUTDATED, VERSION_SAME, VERSION_NEWER).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.conflicts">
+<code class="descname">conflicts</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.conflicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dependencies of the package</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.control_content">
+<code class="descname">control_content</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.control_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the content of a specific control.tar.gz file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.control_filelist">
+<code class="descname">control_filelist</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.control_filelist" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the list of files in control.tar.gz</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.data_content">
+<code class="descname">data_content</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.data_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the content of a specific control.tar.gz file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.debug">
+<code class="descname">debug</code><em class="property"> = 0</em><a class="headerlink" href="#apt.debfile.DscSrcPackage.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.depends">
+<code class="descname">depends</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.depends" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dependencies of the package</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.filelist">
+<code class="descname">filelist</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.filelist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of files associated with this dsc file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.install">
+<code class="descname">install</code><span class="sig-paren">(</span><em>install_progress=None</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install the package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.missing_deps">
+<code class="descname">missing_deps</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.missing_deps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return missing dependencies.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.open">
+<code class="descname">open</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.provides">
+<code class="descname">provides</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.provides" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of virtual packages which are provided by this package.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.replaces">
+<code class="descname">replaces</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.replaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of packages which are replaced by this package.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.replaces_real_pkg">
+<code class="descname">replaces_real_pkg</code><span class="sig-paren">(</span><em>pkgname</em>, <em>oper</em>, <em>ver</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.replaces_real_pkg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if a given non-virtual package is replaced.</p>
+<p>Return True if the deb packages replaces a real (not virtual)
+packages named (pkgname, oper, ver).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="apt.debfile.DscSrcPackage.required_changes">
+<code class="descname">required_changes</code><a class="headerlink" href="#apt.debfile.DscSrcPackage.required_changes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the changes required to satisfy the dependencies.</p>
+<p>Returns: a tuple with (install, remove, unauthenticated)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.satisfy_depends_str">
+<code class="descname">satisfy_depends_str</code><span class="sig-paren">(</span><em>dependsstr</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.satisfy_depends_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Satisfy the dependencies in the given string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.to_hex">
+<code class="descname">to_hex</code><span class="sig-paren">(</span><em>in_data</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.to_hex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="apt.debfile.DscSrcPackage.to_strish">
+<code class="descname">to_strish</code><span class="sig-paren">(</span><em>in_data</em><span class="sig-paren">)</span><a class="headerlink" href="#apt.debfile.DscSrcPackage.to_strish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">apt.debfile</span></code> &#8212; Classes related to debian package files</a><ul>
+<li><a class="reference internal" href="#binary-packages">Binary packages</a></li>
+<li><a class="reference internal" href="#source-packages">Source packages</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python APT Library</a><ul>
+      <li>Previous: <a href="apt.cdrom.html" title="previous chapter"><code class="docutils literal"><span class="pre">apt.cdrom</span></code> - Functionality like in apt-cdrom</a></li>
+      <li>Next: <a href="apt.package.html" title="next chapter"><code class="docutils literal"><span class="pre">apt.package</span></code> &#8212; Classes for package handling</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/library/apt.debfile.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/library/apt.debfile.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

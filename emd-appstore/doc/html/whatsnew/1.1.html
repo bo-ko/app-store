@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What’s New In python-apt 1.1 &#8212; python-apt 1.4.0~beta2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0~beta2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="python-apt 1.4.0~beta2 documentation" href="../contents.html" />
+    <link rel="up" title="What’s new in python-apt" href="index.html" />
+    <link rel="next" title="What’s New In python-apt 1.4" href="1.4.html" />
+    <link rel="prev" title="What’s New In python-apt 1.0" href="1.0.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-s-new-in-python-apt-1-1">
+<h1>What&#8217;s New In python-apt 1.1<a class="headerlink" href="#what-s-new-in-python-apt-1-1" title="Permalink to this headline">¶</a></h1>
+<p>This release is built against APT 1.1</p>
+<div class="section" id="highlights">
+<h2>Highlights<a class="headerlink" href="#highlights" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Code that previously raised <code class="xref py py-class docutils literal"><span class="pre">SystemError</span></code> now raises
+<a class="reference internal" href="../library/apt_pkg.html#apt_pkg.Error" title="apt_pkg.Error"><code class="xref py py-class docutils literal"><span class="pre">apt_pkg.Error</span></code></a>.</li>
+</ul>
+</div>
+<div class="section" id="removed">
+<h2>Removed<a class="headerlink" href="#removed" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The class <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.IndexRecords" title="apt_pkg.IndexRecords"><code class="xref py py-class docutils literal"><span class="pre">apt_pkg.IndexRecords</span></code></a> has been removed, as it was removed
+in APT 1.1</li>
+<li><code class="xref py py-attr docutils literal"><span class="pre">apt_pkg.Dependency.smart_target_pkg</span></code> has been removed.</li>
+</ul>
+</div>
+<div class="section" id="added">
+<h2>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The class <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.HashStringList" title="apt_pkg.HashStringList"><code class="xref py py-class docutils literal"><span class="pre">apt_pkg.HashStringList</span></code></a> has been added.</li>
+<li>The class <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.Error" title="apt_pkg.Error"><code class="xref py py-class docutils literal"><span class="pre">apt_pkg.Error</span></code></a> and an alias <a class="reference internal" href="../library/apt_inst.html#apt_inst.Error" title="apt_inst.Error"><code class="xref py py-class docutils literal"><span class="pre">apt_inst.Error</span></code></a> has
+been added.</li>
+</ul>
+</div>
+<div class="section" id="deprecated">
+<h2>Deprecated<a class="headerlink" href="#deprecated" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../library/apt_pkg.html#apt_pkg.PackageRecords.md5_hash" title="apt_pkg.PackageRecords.md5_hash"><code class="xref py py-attr docutils literal"><span class="pre">apt_pkg.PackageRecords.md5_hash</span></code></a>,
+<a class="reference internal" href="../library/apt_pkg.html#apt_pkg.PackageRecords.sha1_hash" title="apt_pkg.PackageRecords.sha1_hash"><code class="xref py py-attr docutils literal"><span class="pre">apt_pkg.PackageRecords.sha1_hash</span></code></a>, and
+<a class="reference internal" href="../library/apt_pkg.html#apt_pkg.PackageRecords.sha256_hash" title="apt_pkg.PackageRecords.sha256_hash"><code class="xref py py-attr docutils literal"><span class="pre">apt_pkg.PackageRecords.sha256_hash</span></code></a>
+are replaced by <a class="reference internal" href="../library/apt_pkg.html#apt_pkg.PackageRecords.hashes" title="apt_pkg.PackageRecords.hashes"><code class="xref py py-attr docutils literal"><span class="pre">apt_pkg.PackageRecords.hashes</span></code></a>.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What&#8217;s New In python-apt 1.1</a><ul>
+<li><a class="reference internal" href="#highlights">Highlights</a></li>
+<li><a class="reference internal" href="#removed">Removed</a></li>
+<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#deprecated">Deprecated</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../contents.html">Documentation overview</a><ul>
+  <li><a href="index.html">What&#8217;s new in python-apt</a><ul>
+      <li>Previous: <a href="1.0.html" title="previous chapter">What&#8217;s New In python-apt 1.0</a></li>
+      <li>Next: <a href="1.4.html" title="next chapter">What&#8217;s New In python-apt 1.4</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/whatsnew/1.1.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2017, Julian Andres Klode <jak@debian.org>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/whatsnew/1.1.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
