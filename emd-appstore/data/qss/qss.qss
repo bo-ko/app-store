@@ -9,11 +9,11 @@ QPushButton:focus {
 }
 
 QWidget#CtrlWidget {
-    background-color:#1B55A0;
+    background-color:#4D4D4D
 }
 
 QWidget#ToolBarWidget {
-    background-color:#55B0FF;
+    background-color:#D8DDE6;
 }
 
 QPushButton#SearchBt {
