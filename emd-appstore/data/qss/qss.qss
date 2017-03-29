@@ -28,3 +28,23 @@ QPushButton#SearchBt:hover {
 QPushButton#SearchBt:pressed {
     border-image:url(:/data/images/icon_search_press)
 }
+
+QPushButton#BackPageBt {
+    border-image:url(:/data/images/back);
+    background:transparent;
+}
+
+QPushButton#BackPageBt:hover {
+    border-image:url(:/data/images/back-hover);
+}
+
+QPushButton#BackPageBt:pressed {
+    border-image:url(:/data/images/back-pressed);
+}
+
+QLineEdit {
+    border:2px groove gray;
+    border-radius:10px;
+    padding:2px 4px;
+    outline: none;
+}

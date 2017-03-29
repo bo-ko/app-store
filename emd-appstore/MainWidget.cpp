@@ -67,7 +67,7 @@ void MainWidget::UiInit()
     SearchLine->setLayout(SearchLayout);
 
     CtrlWidget->setLayout(CtrlLt);
-    CtrlLt->addWidget(LogoImage);
+    CtrlLt->addWidget(LogoImage, 0, Qt::AlignHCenter | Qt::AlignVCenter);
     CtrlLt->addStretch();
     CtrlLt->addWidget(HomePageBt);
     CtrlLt->addStretch();
@@ -78,6 +78,8 @@ void MainWidget::UiInit()
     CtrlLt->addWidget(RemovePageBt);
     CtrlLt->addStretch();
     CtrlLt->addWidget(DownloadPageBt);
+    QPixmap IconPixmap(":/data/images/applications");
+    LogoImage->setPixmap(IconPixmap);
 
     CtrlWidget->setFixedSize(80, this->height());
 
@@ -85,7 +87,7 @@ void MainWidget::UiInit()
     CtrlWidget->setObjectName("CtrlWidget");
     ToolBarWidget->setObjectName("ToolBarWidget");
     SearchBt->setObjectName("SearchBt");
-
+    BackPageBt->setObjectName("BackPageBt");
 
     this->setLayout(MainLt);
 }

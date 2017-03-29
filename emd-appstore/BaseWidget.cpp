@@ -25,6 +25,7 @@ void BaseWidget::mousePressEvent(QMouseEvent *event)
         if((this->pos().x() + 80) < event->globalPos().x() && \
            (this->pos().y() + 36) > event->globalPos().y())
         {
+            setCursor(Qt::ClosedHandCursor);
             AllowMove = true;
             MovePosition = event->globalPos() - this->pos();
         }
@@ -49,5 +50,6 @@ void BaseWidget::mouseMoveEvent(QMouseEvent *event)
 void BaseWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     AllowMove = false;
+    setCursor(Qt::ArrowCursor);
     return QWidget::mouseReleaseEvent(event);
 }
