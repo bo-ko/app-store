@@ -12,6 +12,11 @@ QWidget#CtrlWidget {
     background-color:#4D4D4D
 }
 
+QWidget#AppWidget {
+    background-color:#6CA6CD;
+    border-radius: 12px 12px
+}
+
 QWidget#ToolBarWidget {
     background-color:#D8DDE6;
 }

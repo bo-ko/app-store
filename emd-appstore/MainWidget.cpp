@@ -9,6 +9,29 @@ MainWidget::MainWidget(QWidget *parent) : BaseWidget(parent)
 
 void MainWidget::DataInit()
 {
+
+}
+
+void MainWidget::UiInit()
+{
+    QHBoxLayout *MainLt;
+    QVBoxLayout *CtrlLt;
+    QVBoxLayout *BodyLt;
+
+    QWidget *ToolBarWidget;
+    QHBoxLayout *ToolBarLt;
+    QPushButton *BackPageBt;
+    QPushButton *SearchBt;
+    QLineEdit   *SearchLine;
+
+    QWidget *CtrlWidget;
+    QLabel *LogoImage;
+    QPushButton *HomePageBt;
+    QPushButton *AllPageBt;
+    QPushButton *UpdatePageBt;
+    QPushButton *RemovePageBt;
+    QPushButton *DownloadPageBt;
+
     MainLt         = new QHBoxLayout();
     CtrlLt         = new QVBoxLayout();
     BodyLt         = new QVBoxLayout();
@@ -26,10 +49,7 @@ void MainWidget::DataInit()
     BackPageBt     = new QPushButton();
     SearchBt       = new QPushButton();
     SearchLine     = new QLineEdit();
-}
 
-void MainWidget::UiInit()
-{
     MainLt->addWidget(CtrlWidget);
     MainLt->addLayout(BodyLt);
 

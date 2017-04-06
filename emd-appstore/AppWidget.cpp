@@ -1,27 +1,26 @@
 #include "AppWidget.h"
 
-AppWidget::AppWidget(QWidget *parent)
-    : QWidget(parent)
+AppWidget::AppWidget(QWidget *parent) : QWidget(parent)
 {
     DataInit();
     UiInit();
-}
-
-AppWidget::~AppWidget()
-{
-
+    ConnectInit();
 }
 
 void AppWidget::DataInit()
 {
-    OverviewLt = new QVBoxLayout();
-    AppName    = new QLabel();
-    IconText   = new QLabel();
-    InstallBt  = new QPushButton();
+
 }
 
 void AppWidget::UiInit()
 {
+    QVBoxLayout *OverviewLt;
+
+    OverviewLt = new QVBoxLayout();
+    AppName    = new QLabel();
+    IconText   = new QLabel();
+    InstallBt  = new QPushButton();
+
     OverviewLt->addWidget(AppName);
     OverviewLt->addWidget(IconText);
     OverviewLt->addWidget(InstallBt);
@@ -33,6 +32,9 @@ void AppWidget::UiInit()
     IconText->setText("AppIcon");
 
     this->setLayout(OverviewLt);
+
+    this->setObjectName("AppWidget");
+    this->setFixedSize(160, 100);
 }
 
 void AppWidget::ConnectInit()

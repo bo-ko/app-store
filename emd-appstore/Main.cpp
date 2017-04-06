@@ -1,8 +1,8 @@
 #include "MainWidget.h"
-#include <QApplication>
+
 #include <QFile>
 #include <QString>
-
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {

@@ -4,6 +4,7 @@
 #include <QMenu>
 #include <QWidget>
 #include <QPushButton>
+#include <QHBoxLayout>
 
 class ToolBt : public QWidget
 {
@@ -17,7 +18,7 @@ private:
     QPushButton *MenuBt; // menu
     QMenu       *ToolMenu;
 
-    void DataInit();
+    //void DataInit();
     void UiInit();
     void ConnectInit();
 

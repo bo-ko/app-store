@@ -1,8 +1,8 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
-#include "BaseWidget.h"
 #include "ToolBt.h"
+#include "BaseWidget.h"
 
 #include <QLabel>
 #include <QWidget>
@@ -24,26 +24,7 @@ signals:
 public slots:
 
 private:
-    QHBoxLayout *MainLt;
-    QVBoxLayout *CtrlLt;
-    QVBoxLayout *BodyLt;
-
     ToolBt *MainToolBt;
-    QWidget *ToolBarWidget;
-    QHBoxLayout *ToolBarLt;
-    QPushButton *BackPageBt;
-    QPushButton *SearchBt;
-    QLineEdit   *SearchLine;
-
-
-    QWidget *CtrlWidget;
-    QLabel *LogoImage;
-    QPushButton *HomePageBt;
-    QPushButton *AllPageBt;
-    QPushButton *UpdatePageBt;
-    QPushButton *RemovePageBt;
-    QPushButton *DownloadPageBt;
-
 
     void UiInit();
     void DataInit();

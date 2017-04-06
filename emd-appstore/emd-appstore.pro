@@ -16,12 +16,16 @@ SOURCES += \
     BaseWidget.cpp \
     MainWidget.cpp \
     Main.cpp \
-    ToolBt.cpp
+    ToolBt.cpp \
+    AppWidget.cpp \
+    PluginPage.cpp
 
 HEADERS  += \
     BaseWidget.h \
     MainWidget.h \
-    ToolBt.h
+    ToolBt.h \
+    AppWidget.h \
+    PluginPage.h
 
 RESOURCES += \
     data.qrc
