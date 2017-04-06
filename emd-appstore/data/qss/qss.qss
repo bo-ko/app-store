@@ -47,6 +47,10 @@ QPushButton#BackPageBt:pressed {
     border-image:url(:/data/images/back-pressed);
 }
 
+QPushButton#HomePageBt {
+    border-image:url(:/data/images/home);
+}
+
 QLineEdit {
     border:2px groove gray;
     border-radius:10px;

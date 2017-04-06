@@ -4,6 +4,7 @@
 #include "ToolBt.h"
 #include "BaseWidget.h"
 
+#include <QIcon>
 #include <QLabel>
 #include <QWidget>
 #include <QPixmap>

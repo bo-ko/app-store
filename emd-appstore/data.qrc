@@ -9,5 +9,10 @@
         <file>data/images/back.png</file>
         <file>data/images/back-hover.png</file>
         <file>data/images/back-pressed.png</file>
+        <file>data/images/allapp.png</file>
+        <file>data/images/download.png</file>
+        <file>data/images/home.png</file>
+        <file>data/images/remove.png</file>
+        <file>data/images/update.png</file>
     </qresource>
 </RCC>
